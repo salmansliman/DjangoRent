@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Rent</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div class="container1">
+        <h1>Add Rent</h1>
+        <form action="{% url 'addRent'%}" method="POST">
+            {% csrf_token %}
+            
+            <label for="car">Choose a Car:</label><br>
+            <select id="car" name="car">
+                {% for c in car %}
+                    <option value="{{ c.id }}">Car {{ c.id }} {{c.brand}} {{c.model}}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="customer">Choose a Customer:</label><br>
+            <select id="customer" name="customer">
+                {% for c in cos %}
+                    <option value="{{ c.id }}">IdCustomer {{ c.id }} {{c.first}} {{c.last}}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="startDate">Start Date:</label><br>
+            <input type="date" id="startDate" name="startDate"><br><br>
+
+            <label for="endDate">End Date:</label><br>
+            <input type="date" id="endDate" name="endDate"><br><br>
+
+            <button type="submit" id="new">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

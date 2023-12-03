@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Car</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div class="container2">
+        <h1>Update Car</h1>
+        <form action="{% url 'uprec' car.id %}" method="POST">
+            {% csrf_token %}
+            <label for="brand">Brand</label><br><br>
+            <input type="text" name="brand" value="{{ car.brand }}"><br><br>
+            <label for="model">Model</label><br><br>
+            <input type="text" name="model" value="{{ car.model }}"><br><br>
+            <label for="price">Price</label><br><br>
+            <input type="number" name="price" value="{{ car.price }}"><br><br>
+            <label for="rented">Rented</label><br><br>
+            <input type="checkbox" name="rented" {% if car.rented %}checked{% endif %}><br><br>
+            <button type="submit" id="new1">Update</button>
+        </form>
+    </div>
+</body>
+
+</html>

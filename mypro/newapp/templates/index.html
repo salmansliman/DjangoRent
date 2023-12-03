@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Inventory</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<body>
+
+    <div class="container">
+        <h1>Car Inventory</h1>
+        
+        
+        <table id="cars" border="1">
+            <thead>
+                <th>Id</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Rented</th>
+                <th colspan="2" id="mid">Action</th>
+            </thead>
+            {% for c in car %}
+            <tr>
+                <td>{{c.id}}</td>
+                <td>{{c.brand}}</td>
+                <td>{{c.model}}</td>
+                <td>{{c.price}}</td>
+                <td>{{c.rented}}</td>
+                <td>
+                    <a href="update/{{c.id}}"><button id="up">update</button></a>
+                </td>
+                <td>
+                    <a href="delete/{{c.id}}"><button id="del">delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <a href="{% url 'add' %}"><button id="new3">Add Car</button></a>
+        <h1>Customer Inventory</h1>
+        <table id="cars" border="1">
+            <thead>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                
+                <th colspan="2" id="mid">Action</th>
+            </thead>
+            {% for c in cos %}
+            <tr>
+                <td>{{c.id}}</td>
+                <td>{{c.first}}</td>
+                <td>{{c.last}}</td>
+                <td>{{c.phone}}</td>
+                
+                <td>
+                    <a href="updateC/{{c.id}}"><button id="up">update</button></a>
+                </td>
+                <td>
+                    <a href="deleteC/{{c.id}}"><button id="del">delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <a href="{% url 'addC' %}"><button id="new3">Add Customer</button></a>
+        <h1>Rent Inventory</h1>
+        <table id="cars" border="1">
+            <thead>
+                <th>Id</th>
+                <th>car</th>
+                <th>customer</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                
+                <th colspan="2" id="mid">Action</th>
+            </thead>
+            {% for r in rent %}
+            <tr>
+                <td>{{r.id_rent}}</td>
+                <td>{{r.id_car}}</td>
+                <td>{{r.id_cos}}</td>
+                <td>{{r.startDate}}</td>
+                <td>{{r.endDate}}</td>
+                
+                
+                <td>
+                    <a href="deleteR/{{r.id_rent}}"><button id="del">delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        
+        
+        <a href="{% url 'rent' %}"><button id="new3">RentCar</button></a>
+    </div>
+</body>
+
+</html>
